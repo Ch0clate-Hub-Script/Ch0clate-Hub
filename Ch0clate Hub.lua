@@ -43,9 +43,9 @@ local MainTab = MainWindow:CreateTab("Main", 4483362458) -- Title, Image
 
 
 local Button = MainTab:CreateButton({
-   Name = "Test Button",
+   Name = "Reset Character",
    Callback = function()
-   -- The function that takes place when the button is pressed
+   game.platers.LocalPlayer.Character.Humanoid.Health = 0
    end,
 })
 
