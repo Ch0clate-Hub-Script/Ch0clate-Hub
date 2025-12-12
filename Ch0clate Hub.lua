@@ -45,53 +45,6 @@ MainTab:CreateButton({
 
 
 ---------------------------------------------------------
--- INFINITE JUMP (SAFE VERSION)
----------------------------------------------------------
-local UIS = game:GetService("UserInputService")
-local InfiniteJumpEnabled = false
-
-UIS.JumpRequest:Connect(function()
-    if InfiniteJumpEnabled then
-        local hum = game.Players.LocalPlayer.Character and
-            game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
-        if hum then hum:ChangeState(Enum.HumanoidStateType.Jumping) end
-    end
-end)
-
-MainTab:CreateToggle({
-    Name = "Infinite Jump",
-    CurrentValue = false,
-    Flag = "InfiniteJump_Toggle",
-    Callback = function(v)
-        InfiniteJumpEnabled = v
-    end,
-})
-
-
----------------------------------------------------------
--- AUTO RESPAWN TOGGLE
----------------------------------------------------------
-local autoRespawn = false
-
-MainTab:CreateToggle({
-    Name = "Auto Respawn",
-    CurrentValue = false,
-    Flag = "AutoRespawn_Save",
-    Callback = function(v)
-        autoRespawn = v
-    end,
-})
-
-game.Players.LocalPlayer.CharacterAdded:Connect(function()
-    if autoRespawn then
-        task.wait(1)
-        local hum = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
-        if hum then hum.Health = 0 end
-    end
-end)
-
-
----------------------------------------------------------
 -- SPIN BUTTON
 ---------------------------------------------------------
 MainTab:CreateButton({
@@ -122,28 +75,6 @@ MainTab:CreateButton({
         if hum then hum.Sit = true end
     end,
 })
-
-
----------------------------------------------------------
--- FIRST PERSON LOCK
----------------------------------------------------------
-local fpLock = false
-
-MainTab:CreateToggle({
-    Name = "Force First Person",
-    CurrentValue = false,
-    Flag = "FP_Save",
-    Callback = function(v)
-        fpLock = v
-        local p = game.Players.LocalPlayer
-        if v then
-            p.CameraMode = Enum.CameraMode.LockFirstPerson
-        else
-            p.CameraMode = Enum.CameraMode.Classic
-        end
-    end,
-})
-
 
 
 
@@ -246,4 +177,95 @@ MainTab:CreateSlider({
         local hum = char:FindFirstChildOfClass("Humanoid")
         if hum then hum.JumpPower = v end
     end,
+})
+
+local Section = MainTab:CreateSection("Toggles")
+
+
+---------------------------------------------------------
+-- FIRST PERSON LOCK
+---------------------------------------------------------
+local fpLock = false
+
+MainTab:CreateToggle({
+    Name = "Force First Person",
+    CurrentValue = false,
+    Flag = "FP_Save",
+    Callback = function(v)
+        fpLock = v
+        local p = game.Players.LocalPlayer
+        if v then
+            p.CameraMode = Enum.CameraMode.LockFirstPerson
+        else
+            p.CameraMode = Enum.CameraMode.Classic
+        end
+    end,
+})
+
+
+---------------------------------------------------------
+-- INFINITE JUMP (SAFE VERSION)
+---------------------------------------------------------
+local UIS = game:GetService("UserInputService")
+local InfiniteJumpEnabled = false
+
+UIS.JumpRequest:Connect(function()
+    if InfiniteJumpEnabled then
+        local hum = game.Players.LocalPlayer.Character and
+            game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+        if hum then hum:ChangeState(Enum.HumanoidStateType.Jumping) end
+    end
+end)
+
+MainTab:CreateToggle({
+    Name = "Infinite Jump",
+    CurrentValue = false,
+    Flag = "InfiniteJump_Toggle",
+    Callback = function(v)
+        InfiniteJumpEnabled = v
+    end,
+})
+
+
+---------------------------------------------------------
+-- AUTO RESPAWN TOGGLE
+---------------------------------------------------------
+local autoRespawn = false
+
+MainTab:CreateToggle({
+    Name = "Auto Respawn",
+    CurrentValue = false,
+    Flag = "AutoRespawn_Save",
+    Callback = function(v)
+        autoRespawn = v
+    end,
+})
+
+game.Players.LocalPlayer.CharacterAdded:Connect(function()
+    if autoRespawn then
+        task.wait(1)
+        local hum = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+        if hum then hum.Health = 0 end
+    end
+end)
+
+local SpeedClickerTab = Window:CreateTab("Ch0clate Hub | Speed Clicker ⚡", 4483362458) -- Title, Image
+
+_G.AutoFarm = true
+
+function AutoClick()
+      while _g.AutoFarmClick do
+      game:GetService("ReplicatedStorage").Events.Click:FireServer()
+      task.wait(00000.1)
+      end
+end
+
+local AutoFarmToggle = SpeedClickerTab:CreateToggle({
+   Name = "Auto Farm 🔄️",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+   _g.AutoFarmClick = ClickV
+   AutoClick()
+   end,
 })
