@@ -69,100 +69,6 @@ MainTab:CreateToggle({
 
 
 ---------------------------------------------------------
--- WALKSPEED SLIDER
----------------------------------------------------------
-MainTab:CreateSlider({
-    Name = "Walkspeed",
-    Range = {16, 250},
-    Increment = 1,
-    Suffix = "Speed",
-    CurrentValue = 16,
-    Flag = "WalkspeedValueSave",
-    Callback = function(v)
-        local lp = game.Players.LocalPlayer
-        local char = lp.Character or lp.CharacterAdded:Wait()
-        local hum = char:FindFirstChildOfClass("Humanoid")
-        if hum then hum.WalkSpeed = v end
-    end,
-})
-
-
----------------------------------------------------------
--- JUMPPOWER SLIDER
----------------------------------------------------------
-MainTab:CreateSlider({
-    Name = "JumpPower",
-    Range = {50, 500},
-    Increment = 10,
-    Suffix = "Power",
-    CurrentValue = 50,
-    Flag = "JumpPowerValueSave",
-    Callback = function(v)
-        local lp = game.Players.LocalPlayer
-        local char = lp.Character or lp.CharacterAdded:Wait()
-        local hum = char:FindFirstChildOfClass("Humanoid")
-        if hum then hum.JumpPower = v end
-    end,
-})
-
-
----------------------------------------------------------
--- FIELD OF VIEW SLIDER
----------------------------------------------------------
-MainTab:CreateSlider({
-    Name = "Field of View",
-    Range = {60, 120},
-    Increment = 1,
-    Suffix = "FOV",
-    CurrentValue = 70,
-    Flag = "FOV_Save",
-    Callback = function(v)
-        workspace.CurrentCamera.FieldOfView = v
-    end,
-})
-
-
----------------------------------------------------------
--- CHARACTER TRANSPARENCY SLIDER
----------------------------------------------------------
-MainTab:CreateSlider({
-    Name = "Character Transparency",
-    Range = {0, 1},
-    Increment = 0.1,
-    Suffix = "",
-    CurrentValue = 0,
-    Flag = "Transparency_Save",
-    Callback = function(v)
-        local char = game.Players.LocalPlayer.Character
-        if not char then return end
-        for _, part in ipairs(char:GetDescendants()) do
-            if part:IsA("BasePart") then
-                part.Transparency = v
-            end
-        end
-    end,
-})
-
-
----------------------------------------------------------
--- CAMERA MAX ZOOM SLIDER
----------------------------------------------------------
-MainTab:CreateSlider({
-    Name = "Max Camera Zoom",
-    Range = {10, 200},
-    Increment = 5,
-    Suffix = "",
-    CurrentValue = 50,
-    Flag = "Zoom_Save",
-    Callback = function(v)
-        local p = game.Players.LocalPlayer
-        p.CameraMaxZoomDistance = v
-        p.CameraMinZoomDistance = 0.5
-    end,
-})
-
-
----------------------------------------------------------
 -- AUTO RESPAWN TOGGLE
 ---------------------------------------------------------
 local autoRespawn = false
@@ -235,5 +141,109 @@ MainTab:CreateToggle({
         else
             p.CameraMode = Enum.CameraMode.Classic
         end
+    end,
+})
+
+
+
+
+local Section = MainTab:CreateSection("Sliders")
+
+
+
+
+---------------------------------------------------------
+-- CAMERA MAX ZOOM SLIDER
+---------------------------------------------------------
+MainTab:CreateSlider({
+    Name = "Max Camera Zoom",
+    Range = {10, 200},
+    Increment = 5,
+    Suffix = "",
+    CurrentValue = 50,
+    Flag = "Zoom_Save",
+    Callback = function(v)
+        local p = game.Players.LocalPlayer
+        p.CameraMaxZoomDistance = v
+        p.CameraMinZoomDistance = 0.5
+    end,
+})
+
+
+---------------------------------------------------------
+-- CHARACTER TRANSPARENCY SLIDER
+---------------------------------------------------------
+MainTab:CreateSlider({
+    Name = "Character Transparency",
+    Range = {0, 1},
+    Increment = 0.1,
+    Suffix = "",
+    CurrentValue = 0,
+    Flag = "Transparency_Save",
+    Callback = function(v)
+        local char = game.Players.LocalPlayer.Character
+        if not char then return end
+        for _, part in ipairs(char:GetDescendants()) do
+            if part:IsA("BasePart") then
+                part.Transparency = v
+            end
+        end
+    end,
+})
+
+
+
+---------------------------------------------------------
+-- FIELD OF VIEW SLIDER
+---------------------------------------------------------
+MainTab:CreateSlider({
+    Name = "Field of View",
+    Range = {60, 120},
+    Increment = 1,
+    Suffix = "FOV",
+    CurrentValue = 70,
+    Flag = "FOV_Save",
+    Callback = function(v)
+        workspace.CurrentCamera.FieldOfView = v
+    end,
+})
+
+
+
+
+---------------------------------------------------------
+-- WALKSPEED SLIDER
+---------------------------------------------------------
+MainTab:CreateSlider({
+    Name = "Walkspeed",
+    Range = {16, 250},
+    Increment = 1,
+    Suffix = "Speed",
+    CurrentValue = 16,
+    Flag = "WalkspeedValueSave",
+    Callback = function(v)
+        local lp = game.Players.LocalPlayer
+        local char = lp.Character or lp.CharacterAdded:Wait()
+        local hum = char:FindFirstChildOfClass("Humanoid")
+        if hum then hum.WalkSpeed = v end
+    end,
+})
+
+
+---------------------------------------------------------
+-- JUMPPOWER SLIDER
+---------------------------------------------------------
+MainTab:CreateSlider({
+    Name = "JumpPower",
+    Range = {50, 500},
+    Increment = 10,
+    Suffix = "Power",
+    CurrentValue = 50,
+    Flag = "JumpPowerValueSave",
+    Callback = function(v)
+        local lp = game.Players.LocalPlayer
+        local char = lp.Character or lp.CharacterAdded:Wait()
+        local hum = char:FindFirstChildOfClass("Humanoid")
+        if hum then hum.JumpPower = v end
     end,
 })
