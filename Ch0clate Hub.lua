@@ -27,6 +27,14 @@ local MainWindow = Rayfield:CreateWindow({
     }
 })
 
+-- SpeedClickerTab
+local SpeedClickerTab = MainWindow:CreateTab("Speed Clicker ⚡", 4483362458)
+
+
+
+
+
+
 -- Main Tab
 local MainTab = MainWindow:CreateTab("Main", 4483362458)
 
@@ -249,7 +257,9 @@ game.Players.LocalPlayer.CharacterAdded:Connect(function()
     end
 end)
 
-local SpeedClickerTab = Window:CreateTab("Ch0clate Hub | Speed Clicker ⚡", 4483362458) -- Title, Image
+
+
+local Section = SpeedClickerTab:CreateSection("Speed Clicker Section")
 
 _G.AutoFarm = true
 
@@ -261,7 +271,7 @@ function AutoClick()
 end
 
 local AutoFarmToggle = SpeedClickerTab:CreateToggle({
-   Name = "Auto Farm 🔄️",
+   Name = "Auto Farm",
    CurrentValue = false,
    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
@@ -269,3 +279,4 @@ local AutoFarmToggle = SpeedClickerTab:CreateToggle({
    AutoClick()
    end,
 })
+
