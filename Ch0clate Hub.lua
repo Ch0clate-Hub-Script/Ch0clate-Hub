@@ -30,11 +30,11 @@ local MainWindow = Rayfield:CreateWindow({
    KeySettings = {
       Title = "Ch0clate key system",
       Subtitle = "Key System",
-      Note = "Free Key: Ch0clate, WARNING this key might get changed", -- Use this to tell the user how to get a key
+      Note = "Go to https://discord.gg/Rv472pgSFM to get the key", -- Use this to tell the user how to get a key
       FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
       SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
       GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
-      Key = {"Ch0clate"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+      Key = {"SDvrfCrge3dcsfr4EFw3"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
    }
 })
 
@@ -61,6 +61,9 @@ local Toggle = MainTab:CreateToggle({
       game:GetService("UserInputService").JumpRequest:Connect(function()
           if InfiniteJumpEnabled then
               game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass('Humanoid'):ChangeState("Jumping")
+              if CurrentValue == false then
+                  InfiniteJumpEnabled = false
+              end
           end
       end)
    end,
@@ -68,9 +71,9 @@ local Toggle = MainTab:CreateToggle({
 
 
 local Slider = MainTab:CreateSlider({
-   Name = "Walkspeed",
+   Name = "Walkspeed [Not Working!!]",
    Range = {16, 250},
-   Increment = 10,
+   Increment = 1,
    Suffix = "Walksoeed",
    CurrentValue = 10,
    Flag = "Walkspeed Value save", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
@@ -83,7 +86,7 @@ local Slider = MainTab:CreateSlider({
 
 
 local Slider = MainTab:CreateSlider({
-   Name = "JumpPower",
+   Name = "JumpPower [Not Working!!]",
    Range = {50, 500},
    Increment = 10,
    Suffix = "JumpPower",
