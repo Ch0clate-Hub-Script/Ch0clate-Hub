@@ -21,7 +21,7 @@ local MainWindow = Rayfield:CreateWindow({
         Subtitle = "Key System",
         Note = "Get your key from discord.gg/Rv472pgSFM",
         FileName = "Key",
-        SaveKey = true,
+        SaveKey = false,
         GrabKeyFromSite = false,
         Key = {"SDvrfCrge3dcsfr4EFw3"}
     }
@@ -770,4 +770,20 @@ mini2.MouseButton1Click:Connect(function()
 	closebutton.Position =  UDim2.new(0, 0, -1, 27)
 end)
    end,
+})
+
+
+
+local SettingsTab = Window:CreateTab("Settings", 4483362458) -- Title, Image
+
+local Section = SettingsTab:CreateSection("Themes")
+
+SettingsTab:CreateDropdown({
+    Name = "Select Theme",
+    Options = {"Default", "Dark", "Light", "Ocean", "Blood", "Sky", "Crimson", "Ultraviolet", "Amethyst"},
+    CurrentOption = "Default",
+    Flag = "ThemeDropDown",
+    Callback = function(Option)
+        Rayfield:ChangeTheme(Option)
+    end,
 })
