@@ -774,7 +774,7 @@ end)
 
 
 
-local SettingsTab = Window:CreateTab("Settings", 4483362458) -- Title, Image
+local SettingsTab = MainWindow:CreateTab("Settings", 4483362458) -- Title, Image
 
 local Section = SettingsTab:CreateSection("Themes")
 
