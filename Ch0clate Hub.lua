@@ -20,10 +20,10 @@ local MainWindow = Rayfield:CreateWindow({
         Title = "Ch0clate key system",
         Subtitle = "Key System",
         Note = "Get your key from discord.gg/Rv472pgSFM",
-        FileName = "Key",
+        FileName = "Ch0clate Hub Save key",
         SaveKey = false,
         GrabKeyFromSite = false,
-        Key = {"SDvrfCrge3dcsfr4EFw3"}
+        Key = {"Ch0clate Hub Ontop"}
     }
 })
 
@@ -288,11 +288,10 @@ SpeedClickerTab:CreateButton({
 })
 
 
+local Section = MainTab:CreateSection("Movement Stuff")
 
 
-local MovementTab = MainWindow:CreateTab("Movement", 4483362458)
-
-local Button = MovementTab:CreateButton({
+local Button = MainTab:CreateButton({
    Name = "Fly V3 gui",
    Callback = function()
   local main = Instance.new("ScreenGui")
@@ -770,20 +769,4 @@ mini2.MouseButton1Click:Connect(function()
 	closebutton.Position =  UDim2.new(0, 0, -1, 27)
 end)
    end,
-})
-
-
-
-local SettingsTab = MainWindow:CreateTab("Settings", 4483362458) -- Title, Image
-
-local Section = SettingsTab:CreateSection("Themes")
-
-SettingsTab:CreateDropdown({
-    Name = "Select Theme",
-    Options = {"Default", "Dark", "Light", "Ocean", "Blood", "Sky", "Crimson", "Ultraviolet", "Amethyst"},
-    CurrentOption = "Default",
-    Flag = "ThemeDropDown",
-    Callback = function(Option)
-        Rayfield:ChangeTheme(Option)
-    end,
 })
