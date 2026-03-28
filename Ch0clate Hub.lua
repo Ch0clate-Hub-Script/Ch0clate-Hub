@@ -37,15 +37,9 @@ local Window = Rayfield:CreateWindow({
     }
 })
 
---========================================================--
--- PLAYER TAB
---========================================================--
 
 local PlayerTab = Window:CreateTab("Player Scripts", 1049060234)
 
---========================================================--
--- Fly + Noclip Button
---========================================================--
 
 PlayerTab:CreateButton({
    Name = "Fly and Noclip",
@@ -55,9 +49,6 @@ PlayerTab:CreateButton({
    end,
 })
 
---========================================================--
--- Godmode Button
---========================================================--
 
 PlayerTab:CreateButton({
    Name = "God Mode",
@@ -160,11 +151,7 @@ end)
    end,
 })
 
---========================================================--
--- NEW PLAYER SCRIPTS ADDED BELOW
---========================================================--
 
--- Infinite Jump
 PlayerTab:CreateToggle({
     Name = "Infinite Jump",
     CurrentValue = false,
@@ -183,7 +170,7 @@ PlayerTab:CreateToggle({
     end,
 })
 
--- WalkSpeed Slider
+
 PlayerTab:CreateSlider({
     Name = "WalkSpeed",
     Range = {16, 200},
@@ -199,7 +186,7 @@ PlayerTab:CreateSlider({
     end,
 })
 
--- JumpPower Slider
+
 PlayerTab:CreateSlider({
     Name = "JumpPower",
     Range = {50, 300},
@@ -215,15 +202,15 @@ PlayerTab:CreateSlider({
     end,
 })
 
--- ESP
+
 PlayerTab:CreateButton({
     Name = "Player ESP",
     Callback = function()
-        loadstring(game:HttpGet("https://pastebin.com/raw/xuSMWfDu"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/z4tt483/ItzXery.lua/main/Esp-Players.lua"))()
     end,
 })
 
--- Noclip Toggle
+
 PlayerTab:CreateToggle({
     Name = "Noclip",
     CurrentValue = false,
