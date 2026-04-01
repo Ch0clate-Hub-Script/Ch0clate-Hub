@@ -1,246 +1,62 @@
-local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
-local Window = Rayfield:CreateWindow({
-    Name = "Cherry Hub",
-    Icon = 0,
-    LoadingTitle = "Loading Cherry Scripts",
-    LoadingSubtitle = "by CherryGt",
-    ShowText = "Cherry Hub",
-    Theme = "Amethyst",
+local WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
 
-    ToggleUIKeybind = "K",
+WindUI:AddTheme({
+    Name = "Purple Glint",
 
-    DisableRayfieldPrompts = false,
-    DisableBuildWarnings = false,
+    Accent = Color3.fromHex("#7C3AED"),
+    Background = Color3.fromHex("#0F0F14"),
+    Outline = Color3.fromHex("#E9D5FF"),
+    Text = Color3.fromHex("#FAFAFA"),
+    Placeholder = Color3.fromHex("#C4B5FD"),
+    Button = Color3.fromHex("#A78BFA"),
+    Icon = Color3.fromHex("#DDD6FE"),
+})
 
-    ConfigurationSaving = {
+local Window = WindUI:CreateWindow({
+    Title = "VioletCore",
+    Icon = "door-open",
+    Author = "By CheryGt",
+    Folder = "VioletCore",
+
+    Size = UDim2.fromOffset(580, 460),
+    MinSize = Vector2.new(560, 350),
+    MaxSize = Vector2.new(850, 560),
+    Transparent = true,
+    Theme = "Purple Glint",
+    Resizable = true,
+    SideBarWidth = 200,
+    BackgroundImageTransparency = 0.42,
+    HideSearchBar = true,
+    ScrollBarEnabled = false,
+
+    User = {
         Enabled = true,
-        FolderName = nil,
-        FileName = "Cherry Hub"
+        Anonymous = false,
+        Callback = function()
+            print("clicked")
+        end,
     },
 
-    Discord = {
-        Enabled = false,
-        Invite = "noinvitelink",
-        RememberJoins = true
-    },
-
-    KeySystem = true,
-    KeySettings = {
-        Title = "Cherry Hub: Key System",
-        Subtitle = "Key: cheryhub",
-        Note = "No method of obtaining the key is provided",
-        FileName = "Cherry Hub: Key",
+    KeySystem = {
+        Key = { "vilotecorekey", "Vilote#41et3f3*5fd3f5" },
+        Note = "This can not be bypassed, just join the discord for the key.",
+        URL = "https://discord.gg/ApRhvyP9WJ",
         SaveKey = true,
-        GrabKeyFromSite = false,
-        Key = {"cherryhub"}
     }
 })
 
-
-local PlayerTab = Window:CreateTab("Player Scripts", 1049060234)
-
-
-PlayerTab:CreateButton({
-   Name = "Fly and Noclip",
-   Callback = function()
-         loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Gui-Fly-v3-37111"))()
-         loadstring(game:HttpGet("https://pastebin.com/raw/2JZWpiKn", true))()
-   end,
+local MovementTab = Window:Tab({
+    Title = "Movement",
+    Icon = "bird",
+    Locked = false,
 })
 
-
-PlayerTab:CreateButton({
-   Name = "God Mode",
-   Callback = function()
-local Players = game:GetService("Players")
-local TweenService = game:GetService("TweenService")
-local LocalPlayer = Players.LocalPlayer
-local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
-local GodmodeEnabled = false
-
-local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Name = "GodmodeGUI"
-ScreenGui.Parent = game.CoreGui
-
-local Frame = Instance.new("Frame")
-Frame.Size = UDim2.new(0, 0, 0, 0)
-Frame.Position = UDim2.new(0.5, 0, 0.1, 0)
-Frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-Frame.BorderSizePixel = 0
-Frame.BackgroundTransparency = 0.2
-Frame.Parent = ScreenGui
-Frame.AnchorPoint = Vector2.new(0.5, 0)
-Frame.Active = true
-Frame.Draggable = true
-
-local UICorner = Instance.new("UICorner")
-UICorner.CornerRadius = UDim.new(0, 12)
-UICorner.Parent = Frame
-
-local Button = Instance.new("TextButton")
-Button.Size = UDim2.new(0, 180, 0, 40)
-Button.Position = UDim2.new(0, 10, 0, 10)
-Button.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-Button.BorderSizePixel = 0
-Button.Text = "Enable Godmode"
-Button.Font = Enum.Font.GothamBold
-Button.TextColor3 = Color3.fromRGB(255, 255, 255)
-Button.TextSize = 16
-Button.Parent = Frame
-
-local ButtonUICorner = Instance.new("UICorner")
-ButtonUICorner.CornerRadius = UDim.new(0, 8)
-ButtonUICorner.Parent = Button
-
-local Credit = Instance.new("TextLabel")
-Credit.Size = UDim2.new(0, 180, 0, 20)
-Credit.Position = UDim2.new(0, 10, 0, 60)
-Credit.BackgroundTransparency = 1
-Credit.Text = "--Made By HilosHAX--"
-Credit.Font = Enum.Font.GothamSemibold
-Credit.TextColor3 = Color3.fromRGB(150, 150, 150)
-Credit.TextSize = 14
-Credit.Parent = Frame
-
-TweenService:Create(Frame, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Size = UDim2.new(0, 200, 0, 100)}):Play()
-
-local GlowTween = TweenService:Create(Button, TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut, -1, true), {BackgroundColor3 = Color3.fromRGB(70, 70, 70)})
-GlowTween:Play()
-
-local function setupGodmode()
-    for _, part in pairs(workspace:GetDescendants()) do
-        if part:IsA("BasePart") then
-            if string.find(part.Name:lower(), "kill") or string.find(part.Name:lower(), "lava") or part.Material == Enum.Material.Neon then
-                part.CanTouch = false
-                part.CanCollide = false
-                part.Transparency = 0.5
-            end
-        end
-    end
-end
-
-local function revertGodmode()
-    for _, part in pairs(workspace:GetDescendants()) do
-        if part:IsA("BasePart") then
-            if string.find(part.Name:lower(), "kill") or string.find(part.Name:lower(), "lava") or part.Material == Enum.Material.Neon then
-                part.CanTouch = true
-                part.CanCollide = true
-                part.Transparency = 0
-            end
-        end
-    end
-end
-
-Button.MouseButton1Click:Connect(function()
-    GodmodeEnabled = not GodmodeEnabled
-    if GodmodeEnabled then
-        setupGodmode()
-        Button.Text = "Disable Godmode"
-    else
-        revertGodmode()
-        Button.Text = "Enable Godmode"
-    end
-end)
-
-LocalPlayer.CharacterAdded:Connect(function()
-    if ScreenGui then
-        ScreenGui:Destroy()
-    end
-end)
-   end,
-})
-
-
-PlayerTab:CreateToggle({
-    Name = "Infinite Jump",
-    CurrentValue = false,
-    Flag = "InfiniteJump",
-    Callback = function(state)
-        _G.InfiniteJumpEnabled = state
-        local UIS = game:GetService("UserInputService")
-        UIS.JumpRequest:Connect(function()
-            if _G.InfiniteJumpEnabled then
-                local plr = game.Players.LocalPlayer
-                if plr.Character and plr.Character:FindFirstChild("Humanoid") then
-                    plr.Character.Humanoid:ChangeState("Jumping")
-                end
-            end
-        end)
-    end,
-})
-
-
-PlayerTab:CreateSlider({
-    Name = "WalkSpeed",
-    Range = {16, 200},
-    Increment = 1,
-    Suffix = "Speed",
-    CurrentValue = 16,
-    Flag = "WalkSpeed",
-    Callback = function(value)
-        local char = game.Players.LocalPlayer.Character
-        if char and char:FindFirstChild("Humanoid") then
-            char.Humanoid.WalkSpeed = value
-        end
-    end,
-})
-
-
-PlayerTab:CreateSlider({
-    Name = "JumpPower",
-    Range = {50, 300},
-    Increment = 1,
-    Suffix = "Power",
-    CurrentValue = 50,
-    Flag = "JumpPower",
-    Callback = function(value)
-        local char = game.Players.LocalPlayer.Character
-        if char and char:FindFirstChild("Humanoid") then
-            char.Humanoid.JumpPower = value
-        end
-    end,
-})
-
-
-PlayerTab:CreateButton({
-    Name = "Player ESP",
+MovementTab:Button({
+    Title = "Fly Script",
+    Desc = "Float in the air and move freely.",
+    Locked = false,
     Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/z4tt483/ItzXery.lua/main/Esp-Players.lua"))()
-    end,
-})
-
-
-PlayerTab:CreateToggle({
-    Name = "Noclip",
-    CurrentValue = false,
-    Flag = "Noclip",
-    Callback = function(state)
-        _G.Noclip = state
-        local RunService = game:GetService("RunService")
-        local Player = game.Players.LocalPlayer
-
-        RunService.Stepped:Connect(function()
-            if _G.Noclip and Player.Character then
-                for _, part in pairs(Player.Character:GetDescendants()) do
-                    if part:IsA("BasePart") then
-                        part.CanCollide = false
-                    end
-                end
-            end
-        end)
-    end,
-})
-
--- Anti-AFK
-PlayerTab:CreateButton({
-    Name = "Anti-AFK",
-    Callback = function()
-        local vu = game:GetService("VirtualUser")
-        game:GetService("Players").LocalPlayer.Idled:Connect(function()
-            vu:Button2Down(Vector2.new(0,0), workspace.CurrentCamera.CFrame)
-            task.wait(1)
-            vu:Button2Up(Vector2.new(0,0), workspace.CurrentCamera.CFrame)
-        end)
-    end,
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/XNEOFF/FlyGuiV3/main/FlyGuiV3.txt"))()
+    end
 })
