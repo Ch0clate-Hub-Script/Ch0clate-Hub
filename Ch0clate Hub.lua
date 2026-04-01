@@ -185,6 +185,33 @@ PlayerTab:Toggle({
     end
 })
 
+local MM2Tab = Window:Tab({
+    Title = "MM2",
+    Icon = "sword",
+    Locked = false,
+})
+
+local autoGrabSheriffGun = false
+
+MM2Tab:Toggle({
+    Title = "Auto Grab Sheriff Gun",
+    Desc = "Automatically teleports to dropped sheriff gun.",
+    Value = false,
+    Callback = function(state)
+        autoGrabSheriffGun = state
+    end
+})
+
+RunService.RenderStepped:Connect(function()
+    if autoGrabSheriffGun then
+        local gunDrop = workspace:FindFirstChild("GunDrop")
+
+        if gunDrop and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+            LocalPlayer.Character.HumanoidRootPart.CFrame = gunDrop.CFrame + Vector3.new(0, 1, 0)
+        end
+    end
+end)
+
 local ESPTab = Window:Tab({
     Title = "ESP",
     Icon = "eye",
@@ -252,4 +279,3 @@ SettingsTab:Dropdown({
         Window:SetKeybind(Enum.KeyCode[selected])
     end
 })
-
